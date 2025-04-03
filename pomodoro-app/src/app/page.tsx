@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { PrimeReactProvider } from 'primereact/api';
 import "primeicons/primeicons.css";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Controls from "@/components/Controls";
 import LengthSetting from "@/components/LengthSetting";
+import TimerDisplay from '@/components/TimerDisplay';
 
 
 export default function Home() {
@@ -33,6 +33,11 @@ export default function Home() {
           onDecrement={() => console.log("Decremented")}
           minLength={1}
           maxLength={60}
+        />
+
+        <TimerDisplay
+          time={1500} // 25 minutes in seconds
+          mode="session" // or "break"
         />
 
         <Controls

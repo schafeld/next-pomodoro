@@ -37,6 +37,7 @@ interface LengthSettingProps {
   length: number;
   onIncrement: () => void;
   onDecrement: () => void;
+  isDisabled?: boolean;
   minLength: number;
   maxLength: number;
 }
@@ -49,22 +50,37 @@ const LengthSetting: React.FC<LengthSettingProps> = ({
   maxLength,
 }) => {
   return (
-    <div className="flex items-center justify-between p-4 bg-gray-100 text-gray-800 border border-gray-300 rounded-lg shadow">
-      <Tooltip target=".decrement" content="Decrease length" />
-      <Button
-        icon={PrimeIcons.MINUS}
-        className="decrement"
-        onClick={onDecrement}
-        disabled={length <= minLength}
-      />
-      <span className="text-lg font-semibold">{`${label}: ${length} min`}</span>
-      <Tooltip target=".increment" content="Increase length" />
-      <Button
-        icon={PrimeIcons.PLUS}
-        className="increment"
-        onClick={onIncrement}
-        disabled={length >= maxLength}
-      />
+    <div className="flex flex-col p-4 bg-gray-100 text-gray-800 border border-gray-300 rounded-lg shadow">
+      <div className="text-lg font-semibold text-center mb-3">{label}</div>
+      <div className="flex items-center justify-between w-full">
+        <Tooltip 
+          target=".decrement" 
+          content="Decrease length" 
+          position="bottom"
+          className="p-2 bg-gray-300 text-gray-800" 
+        />
+        <Button
+          icon={PrimeIcons.MINUS}
+          className="decrement p-4"
+          onClick={onDecrement}
+          disabled={length <= minLength}
+        />
+
+        <span id="timer-display" className="text-lg font-semibold">{`${length} min`}</span>
+        
+        <Tooltip 
+          target=".increment" 
+          content="Increase length" 
+          position="bottom"
+          className="p-2 bg-gray-300 text-gray-800"
+        />
+        <Button
+          icon={PrimeIcons.PLUS}
+          className="increment p-4"
+          onClick={onIncrement}
+          disabled={length >= maxLength}
+        />
+      </div>
     </div>
   );
 }

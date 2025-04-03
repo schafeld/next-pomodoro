@@ -6,6 +6,7 @@ import "primeicons/primeicons.css";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import Controls from "@/components/Controls";
+import LengthSetting from "@/components/LengthSetting";
 
 
 export default function Home() {
@@ -24,6 +25,15 @@ export default function Home() {
           variant="primary"
         >Button
         </Button>
+        
+        <LengthSetting
+          label="Pomodoro"
+          length={25}
+          onIncrement={() => console.log("Incremented")}
+          onDecrement={() => console.log("Decremented")}
+          minLength={1}
+          maxLength={60}
+        />
 
         <Controls
           isRunning={false}

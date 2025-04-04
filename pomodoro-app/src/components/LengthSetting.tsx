@@ -50,7 +50,7 @@ const LengthSetting: React.FC<LengthSettingProps> = ({
   maxLength,
 }) => {
   return (
-    <div className="flex flex-col p-4 bg-gray-100 text-gray-800 border border-gray-300 rounded-lg shadow">
+    <div className="component--length-setting flex flex-col p-4 bg-gray-100 text-gray-800 border border-gray-300 rounded-lg shadow">
       <div className="text-lg font-semibold text-center mb-3">{label}</div>
       <div className="flex items-center justify-between w-full">
         <Tooltip 

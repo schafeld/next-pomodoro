@@ -12,7 +12,7 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({ time, mode }) => {
   return (
     <div className="component--timer-display flex flex-col items-center justify-center p-4 bg-gray-100 text-gray-800 border border-gray-300 rounded-lg shadow">
       <div className="text-lg font-semibold mb-3">{mode === 'session' ? 'Session' : 'Break'} Time</div>
-      <span id="timer-display" className="text-2xl font-bold">
+      <span className="timer-display text-2xl font-bold">
         {`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
       </span>
     </div>

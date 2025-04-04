@@ -18,7 +18,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { PrimeReactProvider } from 'primereact/api';
 import "primeicons/primeicons.css";
 import Alert from "@/components/Alert";
-import Button from "@/components/Button";
 import Controls from "@/components/Controls";
 import LengthSetting from "@/components/LengthSetting";
 import TimerDisplay from '@/components/TimerDisplay';
@@ -169,7 +168,7 @@ const PomodoroTimer = () => {
   
   return (
     <PrimeReactProvider>
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <div className="component--pomodoro-timer flex flex-col items-center justify-center p-4 bg-gray-100 text-gray-800 border border-gray-300 rounded-lg shadow">
         {showAlert && (
           <Alert
             message={`Time's up! Switch to ${prevModeRef.current === 'session' ? 'Break' : 'Session'}`}
@@ -177,10 +176,18 @@ const PomodoroTimer = () => {
           />
         )}
         <LengthSetting
-          label="Pomodoro"
+          label="Session Length"
           length={sessionLength}
           onIncrement={incrementSessionLength}
           onDecrement={decrementSessionLength}
+          minLength={1}
+          maxLength={60}
+        />
+        <LengthSetting
+          label="Break Length"
+          length={breakLength}
+          onIncrement={incrementBreakLength}
+          onDecrement={decrementBreakLength}
           minLength={1}
           maxLength={60}
         />
@@ -190,6 +197,12 @@ const PomodoroTimer = () => {
           onStartStop={toggleTimer}
           onReset={resetTimer}
         />
+        <p className="text-xs my-4">
+          Current Mode: {currentMode.charAt(0).toUpperCase() + currentMode.slice(1)}.
+          Time Remaining: {Math.floor(currentTime / 60)}:{(currentTime % 60).toString().padStart(2, '0')}. <br />
+          Session Length: {sessionLength} minutes. Break Length: {breakLength} minutes. <br />
+          Timer is {isRunning ? 'Running' : 'Stopped'}
+        </p>
       </div>
     </PrimeReactProvider>
   );

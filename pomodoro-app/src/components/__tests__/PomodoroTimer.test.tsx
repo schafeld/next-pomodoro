@@ -14,8 +14,8 @@ describe('PomodoroTimer', () => {
   test('renders with default values', () => {
     render(<PomodoroTimer />);
     
-    // Check that the timer displays the default session time (25:00)
-    expect(screen.getByText(/25:00/)).toBeInTheDocument();
+    // Check that the timer displays the default session time (25:00) in the timer display component and the debugging output
+    expect(screen.getAllByText(/25:00/).length).toBe(2);
     
     // Check that session and break length settings are displayed
     expect(screen.getByText('Session Length')).toBeInTheDocument();

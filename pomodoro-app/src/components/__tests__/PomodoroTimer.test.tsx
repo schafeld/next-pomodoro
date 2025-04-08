@@ -1,7 +1,15 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import mockConsole from 'jest-mock-console';
 import PomodoroTimer from '../PomodoroTimer';
+
+// Suppress console cluttering output
+// Example: [Error: Could not parse CSS stylesheet] in conjunction with '@layer primereact {\n' +
+beforeAll(() => {
+  // Completely suppress all console output
+  mockConsole(['error', 'warn']);
+});
 
 // Mock timers
 jest.useFakeTimers();
